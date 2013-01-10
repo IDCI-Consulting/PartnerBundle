@@ -1,0 +1,42 @@
+{% extends "IDCIPartnerBundle::adminbase.html.twig" %}
+
+{% block body %}
+
+{{ parent() }}
+
+<div class="page-header">
+  <h1>SocialLink</h1>
+</div>
+
+<table class="table table-bordered table-striped record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Uri</th>
+            <td>{{ entity.uri }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a class="btn" href="{{ path('adminpartner_sociallink') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a class="btn btn-primary" href="{{ path('adminpartner_sociallink_edit', { 'id': entity.id }) }}">
+            {% trans %}Edit{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('adminpartner_sociallink_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">{% trans %}Delete{% endtrans %}</button>
+        </form>
+    </li>
+</ul>
+{% endblock body %}

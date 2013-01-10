@@ -58,6 +58,10 @@ class Partner
      */
     protected $location;
     
+    /**
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner")
+     */
+    protected $socialLinks;
     
     /**
      * Get id
@@ -136,5 +140,51 @@ class Partner
     public function getPhone()
     {
         return $this->phone;
+    }
+    
+    /**
+     * Set location
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $location
+     * @return Location
+     */
+    public function setLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+    
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \IDCI\Bundle\PartnerBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+    
+    /**
+     * Set offer
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offer
+     * @return Offer
+     */
+    public function setOffer(\IDCI\Bundle\PartnerBundle\Entity\Location $offer = null)
+    {
+        $this->offer = $offer;
+    
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \IDCI\Bundle\PartnerBundle\Entity\Offer
+     */
+    public function getOffer()
+    {
+        return $this->offer;
     }
 }

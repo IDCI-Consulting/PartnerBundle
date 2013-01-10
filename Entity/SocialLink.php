@@ -28,6 +28,13 @@ class SocialLink
      */
     private $uri;
 
+    /**
+     * partner
+     *
+     * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="socialLinks")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="Set Null")
+     */
+    protected $partner;
 
     /**
      * Get id
@@ -60,5 +67,28 @@ class SocialLink
     public function getUri()
     {
         return $this->uri;
+    }
+    
+    /**
+     * Set partner
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Partner $partner
+     * @return Partner
+     */
+    public function setPartner(\IDCI\Bundle\PartnerBundle\Entity\Partner $partner = null)
+    {
+        $this->partner = $partner;
+    
+        return $this;
+    }
+
+    /**
+     * Get partner
+     *
+     * @return \IDCI\Bundle\PartnerBundle\Entity\Partner
+     */
+    public function getPartner()
+    {
+        return $this->partner;
     }
 }
