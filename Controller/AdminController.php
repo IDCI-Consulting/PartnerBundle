@@ -11,14 +11,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Admin controller.
  *
- * @Route("/adminpartner")
+ * @Route("/admin/partner")
  */
 class AdminController extends Controller
 {
     /**
      * Admin home action
      *
-     * @Route("/", name="adminpartner")
+     * @Route("/", name="admin_partner")
      * @Template()
      */
     public function indexAction()

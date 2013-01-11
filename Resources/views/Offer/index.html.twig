@@ -14,7 +14,7 @@
 
 <ul class="list_actions">
     <li>
-        <a class="btn btn-primary" href="{{ path('adminpartner_offer_new') }}">
+        <a class="btn btn-primary" href="{{ path('admin_partner_offer_new') }}">
             {% trans %}Create a new entry{% endtrans %}
         </a>
     </li>
@@ -32,14 +32,14 @@
     <tbody>
     {% for entity in pager.currentPageResults %}
         <tr>
-            <td><a href="{{ path('adminpartner_offer_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td><a href="{{ path('admin_partner_offer_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.description }}</td>
         <td>
-                    <a class="btn btn-block" href="{{ path('adminpartner_offer_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
+                    <a class="btn btn-block" href="{{ path('admin_partner_offer_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
                 </td>
         <td>
-                    <a class="btn btn-block btn-primary" href="{{ path('adminpartner_offer_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
+                    <a class="btn btn-block btn-primary" href="{{ path('admin_partner_offer_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
         <td>
                     {% render 'IDCIPartnerBundle:Offer:deleteForm' with { 'id': entity.id } %}
@@ -51,7 +51,7 @@
 
 <ul class="list_actions">
     <li>
-        <a class="btn btn-primary" href="{{ path('adminpartner_offer_new') }}">
+        <a class="btn btn-primary" href="{{ path('admin_partner_offer_new') }}">
             {% trans %}Create a new entry{% endtrans %}
         </a>
     </li>

@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Location controller.
  *
- * @Route("/adminpartner/location")
+ * @Route("/admin/partner/location")
  */
 class LocationController extends Controller
 {
     /**
      * Lists all Location entities.
      *
-     * @Route("/", name="adminpartner_location")
+     * @Route("/", name="admin_partner_location")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class LocationController extends Controller
     /**
      * Finds and displays a Location entity.
      *
-     * @Route("/{id}/show", name="adminpartner_location_show")
+     * @Route("/{id}/show", name="admin_partner_location_show")
      * @Template()
      */
     public function showAction($id)
@@ -74,7 +74,7 @@ class LocationController extends Controller
     /**
      * Displays a form to create a new Location entity.
      *
-     * @Route("/new", name="adminpartner_location_new")
+     * @Route("/new", name="admin_partner_location_new")
      * @Template()
      */
     public function newAction()
@@ -91,7 +91,7 @@ class LocationController extends Controller
     /**
      * Creates a new Location entity.
      *
-     * @Route("/create", name="adminpartner_location_create")
+     * @Route("/create", name="admin_partner_location_create")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Location:new.html.twig")
      */
@@ -114,7 +114,7 @@ class LocationController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_location_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_partner_location_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -126,7 +126,7 @@ class LocationController extends Controller
     /**
      * Displays a form to edit an existing Location entity.
      *
-     * @Route("/{id}/edit", name="adminpartner_location_edit")
+     * @Route("/{id}/edit", name="admin_partner_location_edit")
      * @Template()
      */
     public function editAction($id)
@@ -151,7 +151,7 @@ class LocationController extends Controller
     /**
      * Edits an existing Location entity.
      *
-     * @Route("/{id}/update", name="adminpartner_location_update")
+     * @Route("/{id}/update", name="admin_partner_location_update")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Location:edit.html.twig")
      */
@@ -180,7 +180,7 @@ class LocationController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_location_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_partner_location_edit', array('id' => $id)));
         }
 
         return array(
@@ -193,7 +193,7 @@ class LocationController extends Controller
     /**
      * Deletes a Location entity.
      *
-     * @Route("/{id}/delete", name="adminpartner_location_delete")
+     * @Route("/{id}/delete", name="admin_partner_location_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -221,7 +221,7 @@ class LocationController extends Controller
             );
         }
 
-        return $this->redirect($this->generateUrl('adminpartner_location'));
+        return $this->redirect($this->generateUrl('admin_partner_location'));
     }
 
     /**

@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * SocialLink controller.
  *
- * @Route("/adminpartner/sociallink")
+ * @Route("/admin/partner/sociallink")
  */
 class SocialLinkController extends Controller
 {
     /**
      * Lists all SocialLink entities.
      *
-     * @Route("/", name="adminpartner_sociallink")
+     * @Route("/", name="admin_partner_sociallink")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class SocialLinkController extends Controller
     /**
      * Finds and displays a SocialLink entity.
      *
-     * @Route("/{id}/show", name="adminpartner_sociallink_show")
+     * @Route("/{id}/show", name="admin_partner_sociallink_show")
      * @Template()
      */
     public function showAction($id)
@@ -74,7 +74,7 @@ class SocialLinkController extends Controller
     /**
      * Displays a form to create a new SocialLink entity.
      *
-     * @Route("/new", name="adminpartner_sociallink_new")
+     * @Route("/new", name="admin_partner_sociallink_new")
      * @Template()
      */
     public function newAction()
@@ -91,7 +91,7 @@ class SocialLinkController extends Controller
     /**
      * Creates a new SocialLink entity.
      *
-     * @Route("/create", name="adminpartner_sociallink_create")
+     * @Route("/create", name="admin_partner_sociallink_create")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:SocialLink:new.html.twig")
      */
@@ -114,7 +114,7 @@ class SocialLinkController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_sociallink_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_partner_sociallink_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -126,7 +126,7 @@ class SocialLinkController extends Controller
     /**
      * Displays a form to edit an existing SocialLink entity.
      *
-     * @Route("/{id}/edit", name="adminpartner_sociallink_edit")
+     * @Route("/{id}/edit", name="admin_partner_sociallink_edit")
      * @Template()
      */
     public function editAction($id)
@@ -151,7 +151,7 @@ class SocialLinkController extends Controller
     /**
      * Edits an existing SocialLink entity.
      *
-     * @Route("/{id}/update", name="adminpartner_sociallink_update")
+     * @Route("/{id}/update", name="admin_partner_sociallink_update")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:SocialLink:edit.html.twig")
      */
@@ -180,7 +180,7 @@ class SocialLinkController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_sociallink_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_partner_sociallink_edit', array('id' => $id)));
         }
 
         return array(
@@ -193,7 +193,7 @@ class SocialLinkController extends Controller
     /**
      * Deletes a SocialLink entity.
      *
-     * @Route("/{id}/delete", name="adminpartner_sociallink_delete")
+     * @Route("/{id}/delete", name="admin_partner_sociallink_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -221,7 +221,7 @@ class SocialLinkController extends Controller
             );
         }
 
-        return $this->redirect($this->generateUrl('adminpartner_sociallink'));
+        return $this->redirect($this->generateUrl('admin_partner_sociallink'));
     }
 
     /**

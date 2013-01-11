@@ -14,7 +14,7 @@
 
 <ul class="list_actions">
     <li>
-        <a class="btn btn-primary" href="{{ path('adminpartner_sociallink_new') }}">
+        <a class="btn btn-primary" href="{{ path('admin_partner_sociallink_new') }}">
             {% trans %}Create a new entry{% endtrans %}
         </a>
     </li>
@@ -31,13 +31,13 @@
     <tbody>
     {% for entity in pager.currentPageResults %}
         <tr>
-            <td><a href="{{ path('adminpartner_sociallink_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td><a href="{{ path('admin_partner_sociallink_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.uri }}</td>
         <td>
-                    <a class="btn btn-block" href="{{ path('adminpartner_sociallink_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
+                    <a class="btn btn-block" href="{{ path('admin_partner_sociallink_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
                 </td>
         <td>
-                    <a class="btn btn-block btn-primary" href="{{ path('adminpartner_sociallink_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
+                    <a class="btn btn-block btn-primary" href="{{ path('admin_partner_sociallink_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
                 </td>
         <td>
                     {% render 'IDCIPartnerBundle:SocialLink:deleteForm' with { 'id': entity.id } %}
@@ -49,7 +49,7 @@
 
 <ul class="list_actions">
     <li>
-        <a class="btn btn-primary" href="{{ path('adminpartner_sociallink_new') }}">
+        <a class="btn btn-primary" href="{{ path('admin_partner_sociallink_new') }}">
             {% trans %}Create a new entry{% endtrans %}
         </a>
     </li>

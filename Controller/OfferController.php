@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Offer controller.
  *
- * @Route("/adminpartner/offer")
+ * @Route("/admin/partner/offer")
  */
 class OfferController extends Controller
 {
     /**
      * Lists all Offer entities.
      *
-     * @Route("/", name="adminpartner_offer")
+     * @Route("/", name="admin_partner_offer")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class OfferController extends Controller
     /**
      * Finds and displays a Offer entity.
      *
-     * @Route("/{id}/show", name="adminpartner_offer_show")
+     * @Route("/{id}/show", name="admin_partner_offer_show")
      * @Template()
      */
     public function showAction($id)
@@ -74,7 +74,7 @@ class OfferController extends Controller
     /**
      * Displays a form to create a new Offer entity.
      *
-     * @Route("/new", name="adminpartner_offer_new")
+     * @Route("/new", name="admin_partner_offer_new")
      * @Template()
      */
     public function newAction()
@@ -91,7 +91,7 @@ class OfferController extends Controller
     /**
      * Creates a new Offer entity.
      *
-     * @Route("/create", name="adminpartner_offer_create")
+     * @Route("/create", name="admin_partner_offer_create")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Offer:new.html.twig")
      */
@@ -114,7 +114,7 @@ class OfferController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_offer_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_partner_offer_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -126,7 +126,7 @@ class OfferController extends Controller
     /**
      * Displays a form to edit an existing Offer entity.
      *
-     * @Route("/{id}/edit", name="adminpartner_offer_edit")
+     * @Route("/{id}/edit", name="admin_partner_offer_edit")
      * @Template()
      */
     public function editAction($id)
@@ -151,7 +151,7 @@ class OfferController extends Controller
     /**
      * Edits an existing Offer entity.
      *
-     * @Route("/{id}/update", name="adminpartner_offer_update")
+     * @Route("/{id}/update", name="admin_partner_offer_update")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Offer:edit.html.twig")
      */
@@ -180,7 +180,7 @@ class OfferController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_offer_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_partner_offer_edit', array('id' => $id)));
         }
 
         return array(
@@ -193,7 +193,7 @@ class OfferController extends Controller
     /**
      * Deletes a Offer entity.
      *
-     * @Route("/{id}/delete", name="adminpartner_offer_delete")
+     * @Route("/{id}/delete", name="admin_partner_offer_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -221,7 +221,7 @@ class OfferController extends Controller
             );
         }
 
-        return $this->redirect($this->generateUrl('adminpartner_offer'));
+        return $this->redirect($this->generateUrl('admin_partner_offer'));
     }
 
     /**

@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Partner controller.
  *
- * @Route("/adminpartner/partner")
+ * @Route("/admin/partner/partner")
  */
 class PartnerController extends Controller
 {
     /**
      * Lists all Partner entities.
      *
-     * @Route("/", name="adminpartner_partner")
+     * @Route("/", name="admin_partner_partner")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class PartnerController extends Controller
     /**
      * Finds and displays a Partner entity.
      *
-     * @Route("/{id}/show", name="adminpartner_partner_show")
+     * @Route("/{id}/show", name="admin_partner_partner_show")
      * @Template()
      */
     public function showAction($id)
@@ -74,7 +74,7 @@ class PartnerController extends Controller
     /**
      * Displays a form to create a new Partner entity.
      *
-     * @Route("/new", name="adminpartner_partner_new")
+     * @Route("/new", name="admin_partner_partner_new")
      * @Template()
      */
     public function newAction()
@@ -91,7 +91,7 @@ class PartnerController extends Controller
     /**
      * Creates a new Partner entity.
      *
-     * @Route("/create", name="adminpartner_partner_create")
+     * @Route("/create", name="admin_partner_partner_create")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Partner:new.html.twig")
      */
@@ -114,7 +114,7 @@ class PartnerController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_partner_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_partner_partner_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -126,7 +126,7 @@ class PartnerController extends Controller
     /**
      * Displays a form to edit an existing Partner entity.
      *
-     * @Route("/{id}/edit", name="adminpartner_partner_edit")
+     * @Route("/{id}/edit", name="admin_partner_partner_edit")
      * @Template()
      */
     public function editAction($id)
@@ -151,7 +151,7 @@ class PartnerController extends Controller
     /**
      * Edits an existing Partner entity.
      *
-     * @Route("/{id}/update", name="adminpartner_partner_update")
+     * @Route("/{id}/update", name="admin_partner_partner_update")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Partner:edit.html.twig")
      */
@@ -180,7 +180,7 @@ class PartnerController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('adminpartner_partner_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_partner_partner_edit', array('id' => $id)));
         }
 
         return array(
@@ -193,7 +193,7 @@ class PartnerController extends Controller
     /**
      * Deletes a Partner entity.
      *
-     * @Route("/{id}/delete", name="adminpartner_partner_delete")
+     * @Route("/{id}/delete", name="admin_partner_partner_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -221,7 +221,7 @@ class PartnerController extends Controller
             );
         }
 
-        return $this->redirect($this->generateUrl('adminpartner_partner'));
+        return $this->redirect($this->generateUrl('admin_partner_partner'));
     }
 
     /**

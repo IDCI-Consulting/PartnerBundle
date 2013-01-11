@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Category controller.
  *
- * @Route("/adminpartner/category")
+ * @Route("/admin/partner/category")
  */
 class CategoryController extends Controller
 {
     /**
      * Lists all Category entities.
      *
-     * @Route("/", name="adminpartner_category")
+     * @Route("/", name="admin_partner_category")
      * @Template()
      */
     public function indexAction(Request $request)
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     /**
      * Finds and displays a Category entity.
      *
-     * @Route("/{id}/show", name="adminpartner_category_show")
+     * @Route("/{id}/show", name="admin_partner_category_show")
      * @Template()
      */
     public function showAction($id)
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to create a new Category entity.
      *
-     * @Route("/new", name="adminpartner_category_new")
+     * @Route("/new", name="admin_partner_category_new")
      * @Template()
      */
     public function newAction()
@@ -91,7 +91,7 @@ class CategoryController extends Controller
     /**
      * Creates a new Category entity.
      *
-     * @Route("/create", name="adminpartner_category_create")
+     * @Route("/create", name="admin_partner_category_create")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Category:new.html.twig")
      */
@@ -114,7 +114,7 @@ class CategoryController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('category_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_partner_category_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -126,7 +126,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing Category entity.
      *
-     * @Route("/{id}/edit", name="adminpartner_category_edit")
+     * @Route("/{id}/edit", name="admin_partner_category_edit")
      * @Template()
      */
     public function editAction($id)
@@ -151,7 +151,7 @@ class CategoryController extends Controller
     /**
      * Edits an existing Category entity.
      *
-     * @Route("/{id}/update", name="adminpartner_category_update")
+     * @Route("/{id}/update", name="admin_partner_category_update")
      * @Method("POST")
      * @Template("IDCIPartnerBundle:Category:edit.html.twig")
      */
@@ -180,7 +180,7 @@ class CategoryController extends Controller
                 ))
             );
 
-            return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_partner_category_edit', array('id' => $id)));
         }
 
         return array(
@@ -193,7 +193,7 @@ class CategoryController extends Controller
     /**
      * Deletes a Category entity.
      *
-     * @Route("/{id}/delete", name="adminpartner_category_delete")
+     * @Route("/{id}/delete", name="admin_partner_category_delete")
      * @Method("POST")
      */
     public function deleteAction(Request $request, $id)
@@ -221,7 +221,7 @@ class CategoryController extends Controller
             );
         }
 
-        return $this->redirect($this->generateUrl('category'));
+        return $this->redirect($this->generateUrl('admin_partner_category'));
     }
 
     /**

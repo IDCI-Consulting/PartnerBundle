@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Api controller.
  *
- * @Route("/partner_api")
+ * @Route("/api/partner")
  */
 class ApiController extends Controller
 {
