@@ -32,10 +32,20 @@ class SocialLink
      * partner
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="socialLinks")
-     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="Set Null")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="Set Null", nullable=false)
      */
     protected $partner;
 
+    /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getUri();
+    }
+    
     /**
      * Get id
      *

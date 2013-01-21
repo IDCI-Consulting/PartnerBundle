@@ -46,7 +46,7 @@ class Partner
      * offer
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", inversedBy="partners")
-     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id", onDelete="Set Null")
+     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id", onDelete="Set Null", nullable=true)
      */
     protected $offer;
     
@@ -54,7 +54,7 @@ class Partner
      * location
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", inversedBy="partners")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Set Null")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Set Null", nullable=false)
      */
     protected $location;
     
@@ -62,6 +62,16 @@ class Partner
      * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner")
      */
     protected $socialLinks;
+    
+    /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf("%s : %s", $this->getId(), $this->getName());
+    }    
     
     /**
      * Get id
