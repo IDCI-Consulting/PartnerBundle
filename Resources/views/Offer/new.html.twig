@@ -1,0 +1,25 @@
+{% extends "IDCIPartnerBundle::adminbase.html.twig" %}
+
+{% block body %}
+
+{{ parent() }}
+
+<div class="page-header">
+  <h1>{% trans %}Offer creation{% endtrans %}</h1>
+</div>
+
+<form action="{{ path('admin_partner_offer_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-primary">{% trans %}Create{% endtrans %}</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a class="btn" href="{{ path('admin_partner_offer') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+</ul>
+{% endblock body %}
