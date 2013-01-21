@@ -8,6 +8,31 @@ Actions: Actions
 Create: Créer
 Back to the list: Retourner à la liste
 List: Liste
+Category: Catégorie
+Categories: Catégories
+category: catégorie
+categories: catégories
+Social links: Liens sociaux
+Social link: Lien social
+social links: liens sociaux
+social link: lien social
+Partner: Partenaire
+Partners: Partenaires
+partner: partenaire
+partners: partenaires
+Offer: Offre
+Offers: Offres
+offer: offre
+offers: offres
+Location: Localisation
+Locations: Localisations
+location: localisation
+locations: localisations
+Partner creation: Création de partenaires
+Location creation: Création de localisations
+Offer creation: Création d'offres
+Social links creation: Création de liens sociaux
+Category creation: Création de catégories
 %entity% creation: création de %entity%
 %entity% edit: editer un %entity%
 %entity%[%id%] has been created: %entity%[%id%] a bien été créé
