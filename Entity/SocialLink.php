@@ -40,7 +40,7 @@ class SocialLink
      * partner
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="socialLinks")
-     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="Set Null", nullable=false)
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
      */
     protected $partner;
 

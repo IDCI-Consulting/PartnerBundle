@@ -62,7 +62,7 @@ class Partner
      * location
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", inversedBy="partners")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Set Null", nullable=false)
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Set Null")
      */
     protected $location;
     
