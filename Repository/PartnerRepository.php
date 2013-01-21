@@ -20,14 +20,91 @@ class PartnerRepository extends EntityRepository
      */
     public function queryQueryBuilder($params)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('p')
-           ->from('IDCIPartnerBundle:Partner', 'p')
-        ;
+        $qb = $this->createQueryBuilder('pr');
+
+        if(isset($params['id'])) {
+            $qb
+                ->andWhere('pr.id = :id')
+                ->setParameter('id', $params['id'])
+            ;
+        }
+
+        if(isset($params['ids'])) {
+            $qb
+                ->andWhere($qb->expr()->in('pr.id', $params['ids']))
+            ;
+        }
+
+        if(isset($params['category_id'])) {
+            $qb
+                ->leftJoin('pr.categories', 'c')
+                ->andWhere('c.id = :cat_id')
+                ->setParameter('cat_id', $params['category_id'])
+            ;
+        }
+
+        if(isset($params['category_ids'])) {
+            $qb
+                ->leftJoin('pr.categories', 'cs')
+                ->andWhere($qb->expr()->in('cs.id', $params['category_ids']))
+            ;
+        }
+
+        if(isset($params['parent_category_id'])) {
+            $qb
+                ->leftJoin('pr.categories', 'pc')
+                ->andWhere('pc.parent = :parent_id')
+                ->setParameter('parent_id', $params['parent_category_id'])
+            ;
+        }
+
+        if(isset($params['parent_category_ids'])) {
+            $qb
+                ->leftJoin('pr.categories', 'pcs')
+                ->andWhere($qb->expr()->in('pcs.parent', $params['parent_category_ids']))
+            ;
+        }
+
+        if(isset($params['ancestor_category_id'])) {
+            $qb
+                ->leftJoin('pr.categories', 'pc')
+                ->andWhere($qb->expr()->like('pc.tree', sprintf(
+                    "'%%%d%s'",
+                    $params['ancestor_category_id'],
+                    Category::getTreeSeparator()
+                )))
+            ;
+        }
+
+        if(isset($params['ancestor_category_ids'])) {
+            $qb->leftJoin('pr.categories', 'pcs');
+            $temp = array();
+            foreach($params['ancestor_category_ids'] as $id) {
+                $temp[] = $qb->expr()->like('pcs.tree', sprintf(
+                    "'%%%d%s'",
+                    $id,
+                    Category::getTreeSeparator()
+                ));
+            }
+            $qb->andWhere(call_user_func_array(array($qb->expr(),'orx'), $temp));
+        }
+
+        if(isset($params['location_id'])) {
+            $qb
+                ->andWhere('pr.location = :location_id')
+                ->setParameter('location_id', $params['location_id'])
+            ;
+        }
+
+        if(isset($params['location_ids'])) {
+            $qb
+                ->andWhere($qb->expr()->in('pr.location', $params['location_ids']))
+            ;
+        }
 
         return $qb;
     }
-    
+
     /**
      * queryQuery
      *
@@ -40,7 +117,7 @@ class PartnerRepository extends EntityRepository
 
         return is_null($qb) ? $qb : $qb->getQuery();
     }
-    
+
     /**
      * query
      *
@@ -53,6 +130,4 @@ class PartnerRepository extends EntityRepository
 
         return is_null($q) ? array() : $q->getResult();
     }
-    
-    
 }

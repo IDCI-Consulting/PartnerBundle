@@ -181,7 +181,7 @@ class Partner
      * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offer
      * @return Offer
      */
-    public function setOffer(\IDCI\Bundle\PartnerBundle\Entity\Location $offer = null)
+    public function setOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offer = null)
     {
         $this->offer = $offer;
     
@@ -196,5 +196,45 @@ class Partner
     public function getOffer()
     {
         return $this->offer;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->socialLinks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add socialLinks
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks
+     * @return Partner
+     */
+    public function addSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks)
+    {
+        $this->socialLinks[] = $socialLinks;
+    
+        return $this;
+    }
+
+    /**
+     * Remove socialLinks
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks
+     */
+    public function removeSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks)
+    {
+        $this->socialLinks->removeElement($socialLinks);
+    }
+
+    /**
+     * Get socialLinks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSocialLinks()
+    {
+        return $this->socialLinks;
     }
 }

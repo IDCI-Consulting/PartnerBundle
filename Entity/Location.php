@@ -61,6 +61,15 @@ class Location
      */
     protected $partners;
     
+    /**
+     * toString
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf("%s : %s", $this->getId(), $this->getName());
+    }   
     
     /**
      * Get id
