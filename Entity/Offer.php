@@ -44,9 +44,12 @@ class Offer
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", mappedBy="offer")
+     * partner
+     *
+     * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="offers")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
      */
-    protected $partners;
+    protected $partner;
     
     /**
      * toString

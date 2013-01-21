@@ -51,25 +51,30 @@ class Partner
     private $phone;
 
     /**
-     * offer
-     *
-     * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", inversedBy="partners")
-     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id", onDelete="Set Null", nullable=true)
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", mappedBy="partner")
      */
-    protected $offer;
+    protected $offers;
     
     /**
-     * location
-     *
-     * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", inversedBy="partners")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", onDelete="Set Null")
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", mappedBy="partner")
      */
-    protected $location;
+    protected $locations;
     
     /**
      * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner")
      */
     protected $socialLinks;
+    
+    /**
+     * categories
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="partners", cascade={"persist"})
+     * @ORM\JoinTable(name="idci_partner_partner_category",
+     *     joinColumns={@ORM\JoinColumn(name="partner_id", referencedColumnName="id", onDelete="Cascade")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="Cascade")}
+     * )
+     */
+     protected $categories;
     
     /**
      * toString

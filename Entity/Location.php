@@ -65,9 +65,12 @@ class Location
     private $city;
 
     /**
-     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", mappedBy="location")
+     * partner
+     *
+     * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="locations")
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
      */
-    protected $partners;
+    protected $partner;
     
     /**
      * toString
