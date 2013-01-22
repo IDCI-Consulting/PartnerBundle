@@ -14,7 +14,7 @@ class PartnerType extends AbstractType
             ->add('name')
             ->add('mail')
             ->add('phone')
-            ->add('categories')
+            ->add('categories', null, array("required" => false))
         ;
     }
 

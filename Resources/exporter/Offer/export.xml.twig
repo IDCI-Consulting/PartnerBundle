@@ -1,0 +1,18 @@
+<partner id="{{ entity.id }}">
+  <name>{{ entity.name }}</name>
+  <mail>{{ entity.mail }}</mail>
+  <phone>{{ entity.phone }}</phone>
+  <offer>{{ entity.offer }}</offer>
+  <location id="{{ entity.location.id}}">
+    <name>{{ entity.location.name }}</name>
+    <address>{{ entity.location.address }}</address>
+    <zip_code>{{ entity.location.zipCode }}</zip_code>
+    <city>{{ entity.location.city }}</city>
+    <country>{{ entity.location.country }}</country>
+  </location>
+  <social_links>
+  {% for socialLink in entity.socialLinks %}
+    <social_link>{{ socialLink.uri }}</social_link>
+  {% endfor %}
+  </social_links>
+</partner>

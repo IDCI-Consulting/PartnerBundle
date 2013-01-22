@@ -84,7 +84,18 @@ class Partner
     public function __toString()
     {
         return sprintf("%s : %s", $this->getId(), $this->getName());
-    }    
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->offers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->socialLinks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -164,60 +175,73 @@ class Partner
     {
         return $this->phone;
     }
-    
+
     /**
-     * Set location
+     * Add offers
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $location
-     * @return Location
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offers
+     * @return Partner
      */
-    public function setLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location = null)
+    public function addOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offers)
     {
-        $this->location = $location;
+        $this->offers[] = $offers;
     
         return $this;
     }
 
     /**
-     * Get location
+     * Remove offers
      *
-     * @return \IDCI\Bundle\PartnerBundle\Entity\Location 
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offers
      */
-    public function getLocation()
+    public function removeOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offers)
     {
-        return $this->location;
+        $this->offers->removeElement($offers);
     }
-    
+
     /**
-     * Set offer
+     * Get offers
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offer
-     * @return Offer
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function setOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offer = null)
+    public function getOffers()
     {
-        $this->offer = $offer;
+        return $this->offers;
+    }
+
+    /**
+     * Add locations
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
+     * @return Partner
+     */
+    public function addLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $locations)
+    {
+        $this->locations[] = $locations;
     
         return $this;
     }
 
     /**
-     * Get offer
+     * Remove locations
      *
-     * @return \IDCI\Bundle\PartnerBundle\Entity\Offer
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
      */
-    public function getOffer()
+    public function removeLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $locations)
     {
-        return $this->offer;
+        $this->locations->removeElement($locations);
     }
+
     /**
-     * Constructor
+     * Get locations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function __construct()
+    public function getLocations()
     {
-        $this->socialLinks = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->locations;
     }
-    
+
     /**
      * Add socialLinks
      *
@@ -249,5 +273,38 @@ class Partner
     public function getSocialLinks()
     {
         return $this->socialLinks;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $categories
+     * @return Partner
+     */
+    public function addCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $categories
+     */
+    public function removeCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

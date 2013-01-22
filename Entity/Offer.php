@@ -116,4 +116,27 @@ class Offer
     {
         return $this->description;
     }
+
+    /**
+     * Set partner
+     *
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Partner $partner
+     * @return Offer
+     */
+    public function setPartner(\IDCI\Bundle\PartnerBundle\Entity\Partner $partner)
+    {
+        $this->partner = $partner;
+    
+        return $this;
+    }
+
+    /**
+     * Get partner
+     *
+     * @return \IDCI\Bundle\PartnerBundle\Entity\Partner 
+     */
+    public function getPartner()
+    {
+        return $this->partner;
+    }
 }

@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
             ->add('level')
             ->add('tree')
             ->add('parent')
-            ->add('partners')
+            ->add('partners', null, array("required" => false))
         ;
     }
 
