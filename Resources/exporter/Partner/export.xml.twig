@@ -2,17 +2,25 @@
   <name>{{ entity.name }}</name>
   <mail>{{ entity.mail }}</mail>
   <phone>{{ entity.phone }}</phone>
-  <offer>{{ entity.offer }}</offer>
-  <location id="{{ entity.location.id}}">
-    <name>{{ entity.location.name }}</name>
-    <address>{{ entity.location.address }}</address>
-    <zip_code>{{ entity.location.zipCode }}</zip_code>
-    <city>{{ entity.location.city }}</city>
-    <country>{{ entity.location.country }}</country>
-  </location>
+  <locations>
+  {% for location in entity.locations %}
+    <location id="{{ location.id}}">
+        <name>{{ location.name }}</name>
+        <address>{{ location.address }}</address>
+        <zip_code>{{ location.zipCode }}</zip_code>
+        <city>{{ location.city }}</city>
+        <country>{{ location.country }}</country>
+    </location>
+  {% endfor %}
+  </locations>
+  <offers>
+  {% for offer in entity.offers %}
+    <offer id="{{ offer.id }}">{{ offer.name }}</offer>
+  {% endfor %}
+  </offers>
   <social_links>
   {% for socialLink in entity.socialLinks %}
-    <social_link>{{ socialLink.uri }}</social_link>
+    <social_link id="{{ socialLink.id }}">{{ socialLink.uri }}</social_link>
   {% endfor %}
   </social_links>
 </partner>

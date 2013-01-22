@@ -1,0 +1,11 @@
+{% set enclosure = '"' %}
+{% set delimiter = ',' %}
+
+{% autoescape false %}
+{% spaceless %}
+
+{{ enclosure }}{{ entity.id }}{{ enclosure }}{{ delimiter }}
+{{ enclosure }}{{ entity.uri }}{{ enclosure }}{{ delimiter }}
+
+{% endspaceless %}
+{% endautoescape %}

@@ -20,4 +20,144 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    /**
+     * getOrderedQueryBuilder
+     *
+     * @return QueryBuilder
+     */
+    public function getOrderedQueryBuilder()
+    {
+        $qb = $this->createQueryBuilder('cat')
+            ->orderBy('cat.level', 'ASC')
+            ->addOrderBy('cat.parent', 'ASC')
+            ->addOrderBy('cat.name', 'ASC')
+        ;
+
+        return $qb;
+    }
+
+    /**
+     * getOrderedQuery
+     *
+     * @return Query
+     */
+    public function getOrderedQuery()
+    {
+        $qb = $this->getOrderedQueryBuilder();
+
+        return is_null($qb) ? $qb : $qb->getQuery();
+    }
+
+    /**
+     * getOrdered
+     *
+     * @return DoctrineCollection
+     */
+    public function getOrdered()
+    {
+        $q = $this->getOrderedQuery();
+
+        return is_null($q) ? array() : $q->getResult();
+    }
+
+    /**
+     * queryQueryBuilder
+     *
+     * @param array Parameters
+     * @return QueryBuilder
+     */
+    public function queryQueryBuilder($params)
+    {
+        $qb = $this->getOrderedQueryBuilder();
+
+        if(isset($params['level'])) {
+            $qb
+                ->andWhere('cat.level = :level')
+                ->setParameter('level', $params['level'])
+            ;
+        }
+
+        if(isset($params['id'])) {
+            $qb
+                ->andWhere('cat.id = :id')
+                ->setParameter('id', $params['id'])
+            ;
+        }
+
+        if(isset($params['ids'])) {
+            $qb
+                ->andWhere($qb->expr()->in('cat.id', $params['ids']))
+            ;
+        }
+
+        if(isset($params['name'])) {
+            $qb
+                ->andWhere('off.name = :name')
+                ->setParameter('name', $params['name'])
+            ;
+        }
+        
+       /* if(isset($params['parent_category_id'])) {
+            $qb
+                ->andWhere('cat.parent = :parent_id')
+                ->setParameter('parent_id', $params['parent_category_id'])
+            ;
+        }
+
+        if(isset($params['parent_category_ids'])) {
+            $qb
+                ->andWhere($qb->expr()->in('cat.parent', $params['parent_category_ids']))
+            ;
+        }
+
+        if(isset($params['ancestor_category_id'])) {
+            $qb
+                ->andWhere($qb->expr()->like('cat.tree', sprintf(
+                    "'%%%d%s'",
+                    $params['ancestor_category_id'],
+                    Category::getTreeSeparator()
+                )))
+            ;
+        }
+
+        if(isset($params['ancestor_category_ids'])) {
+            $temp = array();
+            foreach($params['ancestor_category_ids'] as $id) {
+                $temp[] = $qb->expr()->like('cat.tree', sprintf(
+                    "'%%%d%s'",
+                    $id,
+                    Category::getTreeSeparator()
+                ));
+            }
+            $qb->andWhere(call_user_func_array(array($qb->expr(),'orx'), $temp));
+        }*/
+
+        return $qb;
+    }
+
+    /**
+     * queryQuery
+     *
+     * @param array Parameters
+     * @return Query
+     */
+    public function queryQuery($params)
+    {
+        $qb = $this->queryQueryBuilder($params);
+
+        return is_null($qb) ? $qb : $qb->getQuery();
+    }
+
+    /**
+     * query
+     *
+     * @param array Parameters
+     * @return DoctrineCollection
+     */
+    public function query($params)
+    {
+        $q = $this->queryQuery($params);
+
+        return is_null($q) ? array() : $q->getResult();
+    }
 }

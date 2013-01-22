@@ -1,18 +1,8 @@
 {
     "id": "{{ entity.id }}",
     "name": "{{ entity.name }}",
-    "offer": "{{ entity.offer }}",
     "phone": "{{ entity.phone }}",
     "mail": "{{ entity.mail }}",
-    "location":
-    {
-        "id": "{{ entity.location.id }}",
-        "name": "{{ entity.location.name }}",
-        "address": "{{ entity.location.address }}",
-        "zip_code": "{{ entity.location.zipCode}}",
-        "city": "{{ entity.location.city }}",
-        "country": "{{ entity.location.country }}",
-    },
     "sociallinks":
     [
     {% for sociallink in entity.sociallinks %}
@@ -20,6 +10,40 @@
         { "id": "{{ sociallink.id }}", "uri": "{{ sociallink.uri }}" }
         {% else %}
         ,{ "id": "{{ sociallink.id }}", "uri": "{{ sociallink.uri }}" }
+        {% endif %}
+    {% endfor %}
+    ],
+    "offers":
+    [
+    {% for offer in entity.offers %}
+        {% if loop.first %}
+        { "id": "{{ offer.id }}", "name": "{{ offer.name }}" }
+        {% else %}
+        ,{ "id": "{{ offer.id }}", "name": "{{ offer.name }}" }
+        {% endif %}
+    {% endfor %}
+    ],
+    "locations":
+    [
+    {% for location in entity.locations %}
+        {% if loop.first %}
+        {
+        "id": "{{ location.id }}",
+        "name": "{{ location.name }}",
+        "address": "{{ location.address }}",
+        "zip_code": "{{ location.zipCode}}",
+        "city": "{{ location.city }}",
+        "country": "{{ location.country }}",
+        }
+        {% else %}
+        ,{
+        "id": "{{ location.id }}",
+        "name": "{{ location.name }}",
+        "address": "{{ location.address }}",
+        "zip_code": "{{ location.zipCode}}",
+        "city": "{{ location.city }}",
+        "country": "{{ location.country }}",
+        }
         {% endif %}
     {% endfor %}
     ]

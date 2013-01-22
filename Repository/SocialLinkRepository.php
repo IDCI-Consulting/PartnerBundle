@@ -20,4 +20,99 @@ use Doctrine\ORM\EntityRepository;
  */
 class SocialLinkRepository extends EntityRepository
 {
+    /**
+     * getOrderedQueryBuilder
+     *
+     * @return QueryBuilder
+     */
+    public function getOrderedQueryBuilder()
+    {
+        $qb = $this->createQueryBuilder('sc');
+        $qb->orderBy('sc.uri', 'ASC');
+
+        return $qb;
+    }
+
+    /**
+     * getOrderedQuery
+     *
+     * @return Query
+     */
+    public function getOrderedQuery()
+    {
+        $qb = $this->getOrderedQueryBuilder();
+
+        return is_null($qb) ? $qb : $qb->getQuery();
+    }
+
+    /**
+     * getOrdered
+     *
+     * @return DoctrineCollection
+     */
+    public function getOrdered()
+    {
+        $q = $this->getOrderedQuery();
+
+        return is_null($q) ? array() : $q->getResult();
+    }
+
+    /**
+     * queryQueryBuilder
+     *
+     * @param array Parameters
+     * @return QueryBuilder
+     */
+    public function queryQueryBuilder($params)
+    {
+        $qb = $this->getOrderedQueryBuilder();
+
+        if(isset($params['id'])) {
+            $qb
+                ->andWhere('sc.id = :id')
+                ->setParameter('id', $params['id'])
+            ;
+        }
+
+        if(isset($params['ids'])) {
+            $qb
+                ->andWhere($qb->expr()->in('sc.id', $params['ids']))
+            ;
+        }
+        
+        if(isset($params['uri'])) {
+            $qb
+                ->andWhere('sc.uri = :uri')
+                ->setParameter('uri', $params['uri'])
+            ;
+        }
+
+        return $qb;
+    }
+
+    /**
+     * queryQuery
+     *
+     * @param array Parameters
+     * @return Query
+     */
+    public function queryQuery($params)
+    {
+        $qb = $this->queryQueryBuilder($params);
+
+        return is_null($qb) ? $qb : $qb->getQuery();
+    }
+
+    /**
+     * query
+     *
+     * @param array Parameters
+     * @return DoctrineCollection
+     */
+    public function query($params)
+    {
+        $q = $this->queryQuery($params);
+
+        return is_null($q) ? array() : $q->getResult();
+    }
 }
