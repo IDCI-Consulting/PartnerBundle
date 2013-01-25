@@ -21,6 +21,45 @@ use Doctrine\ORM\EntityRepository;
 class PartnerRepository extends EntityRepository
 {
     /**
+     * getAllOrderByNameQueryBuilder
+     *
+     * @return QueryBuilder
+     */
+    public function getAllOrderByNameQueryBuilder()
+    {
+        $qb = $this->createQueryBuilder('pr');
+        $qb
+            ->orderBy('pr.name', 'ASC')
+        ;
+
+        return $qb;
+    }
+
+    /**
+     * getAllOrderByNameQuery
+     *
+     * @return Query
+     */
+    public function getAllOrderByNameQuery()
+    {
+        $qb = $this->getAllOrderByNameQueryBuilder();
+
+        return is_null($qb) ? $qb : $qb->getQuery();
+    }
+
+    /**
+     * getAllOrderByName
+     *
+     * @return DoctrineCollection
+     */
+    public function getAllOrderByName()
+    {
+        $q = $this->getAllOrderByNameQuery();
+
+        return is_null($q) ? array() : $q->getResult();
+    }
+
+    /**
      * queryQueryBuilder
      *
      * @param array Parameters
@@ -28,7 +67,7 @@ class PartnerRepository extends EntityRepository
      */
     public function queryQueryBuilder($params)
     {
-        $qb = $this->createQueryBuilder('pr');
+        $qb = $this->getAllOrderByNameQueryBuilder();
 
         if(isset($params['id'])) {
             $qb
@@ -99,14 +138,16 @@ class PartnerRepository extends EntityRepository
 
         if(isset($params['location_id'])) {
             $qb
-                ->andWhere('pr.location = :location_id')
+                ->leftJoin('pr.locations', 'l')
+                ->andWhere('l.id = :location_id')
                 ->setParameter('location_id', $params['location_id'])
             ;
         }
 
         if(isset($params['location_ids'])) {
             $qb
-                ->andWhere($qb->expr()->in('pr.location', $params['location_ids']))
+                ->leftJoin('pr.locations', 'ls')
+                ->andWhere($qb->expr()->in('ls.id', $params['location_ids']))
             ;
         }
 

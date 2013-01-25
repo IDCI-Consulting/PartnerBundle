@@ -1,0 +1,26 @@
+idci_exporter:
+    entities:
+        "IDCI\\Bundle\\PartnerBundle\\Entity\\Partner":
+            formats:
+                jsonp:
+                    template_name_format: "export.json.twig"
+
+        "IDCI\\Bundle\\PartnerBundle\\Entity\\SocialLink":
+            formats:
+                jsonp:
+                    template_name_format: "export.json.twig"
+
+        "IDCI\\Bundle\\PartnerBundle\\Entity\\Offer":
+            formats:
+                jsonp:
+                    template_name_format: "export.json.twig"
+
+        "IDCI\\Bundle\\PartnerBundle\\Entity\\Category":
+            formats:
+                jsonp:
+                    template_name_format: "export.json.twig"
+
+        "IDCI\\Bundle\\PartnerBundle\\Entity\\Location":
+            formats:
+                jsonp:
+                    template_name_format: "export.json.twig"

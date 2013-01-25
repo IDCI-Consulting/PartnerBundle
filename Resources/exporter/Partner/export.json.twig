@@ -17,9 +17,33 @@
     [
     {% for offer in entity.offers %}
         {% if loop.first %}
-        { "id": "{{ offer.id }}", "name": "{{ offer.name }}" }
+        { "id": "{{ offer.id }}", "name": "{{ offer.name }}", "description": "{{ offer.description}}" }
         {% else %}
-        ,{ "id": "{{ offer.id }}", "name": "{{ offer.name }}" }
+        ,{ "id": "{{ offer.id }}", "name": "{{ offer.name }}", "description": "{{ offer.description}}" }
+        {% endif %}
+    {% endfor %}
+    ],
+    "categories":
+    [
+    {% for category in entity.categories %}
+        {% if loop.first %}
+        {
+        "id": "{{ category.id }}",
+        "name": "{{ category.name }}",
+        "level": "{{ category.level }}",
+        "tree": "{{ category.tree }}",
+        "description": "{{ category.description }}",
+        "color": "{{ category.color }}"
+        }
+        {% else %}
+        ,{
+        "id": "{{ category.id }}",
+        "name": "{{ category.name }}",
+        "level": "{{ category.level }}",
+        "tree": "{{ category.tree }}",
+        "description": "{{ category.description }}",
+        "color": "{{ category.color }}"
+        }
         {% endif %}
     {% endfor %}
     ],
@@ -33,7 +57,7 @@
         "address": "{{ location.address }}",
         "zip_code": "{{ location.zipCode}}",
         "city": "{{ location.city }}",
-        "country": "{{ location.country }}",
+        "country": "{{ location.country }}"
         }
         {% else %}
         ,{
