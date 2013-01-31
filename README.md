@@ -7,12 +7,7 @@ Content
 =======
 
 This bundle was developped for a specific project, but is made to suit with more. It allows to add Partners management in a project.
-You have also an API usable for web-service. With a partner comes :
-    - locations
-    - offers from partners
-    - a partner category
-    - social links
-
+You have also an API usable for web-service. With a partner comes locations, offers from partners, a partner category and social links.
 Feel free to contribute, fork this bundle and add what you need.
 
 Installation
