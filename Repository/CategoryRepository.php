@@ -61,12 +61,12 @@ class CategoryRepository extends EntityRepository
     }
 
     /**
-     * queryQueryBuilder
+     * extractQueryBuilder
      *
      * @param array Parameters
      * @return QueryBuilder
      */
-    public function queryQueryBuilder($params)
+    public function extractQueryBuilder($params)
     {
         $qb = $this->getOrderedQueryBuilder();
 
@@ -136,12 +136,12 @@ class CategoryRepository extends EntityRepository
     }
 
     /**
-     * queryQuery
+     * extractQuery
      *
      * @param array Parameters
      * @return Query
      */
-    public function queryQuery($params)
+    public function extractQuery($params)
     {
         $qb = $this->queryQueryBuilder($params);
 
@@ -149,14 +149,14 @@ class CategoryRepository extends EntityRepository
     }
 
     /**
-     * query
+     * extract
      *
      * @param array Parameters
      * @return DoctrineCollection
      */
-    public function query($params)
+    public function extract($params)
     {
-        $q = $this->queryQuery($params);
+        $q = $this->extractQuery($params);
 
         return is_null($q) ? array() : $q->getResult();
     }
