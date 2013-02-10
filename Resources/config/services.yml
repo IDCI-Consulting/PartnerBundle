@@ -1,4 +1,0 @@
-services:
-    idci_partner.manager:
-        class: IDCI\Bundle\PartnerBundle\Service\Manager
-        arguments: [@service_container]
