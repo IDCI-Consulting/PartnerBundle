@@ -62,7 +62,7 @@ class PartnerRepository extends EntityRepository
     /**
      * extractQueryBuilder
      *
-     * @param array Parameters
+     * @param array $params
      * @return QueryBuilder
      */
     public function extractQueryBuilder($params)
@@ -157,7 +157,7 @@ class PartnerRepository extends EntityRepository
     /**
      * extractQuery
      *
-     * @param array Parameters
+     * @param array $params
      * @return Query
      */
     public function extractQuery($params)
@@ -170,7 +170,7 @@ class PartnerRepository extends EntityRepository
     /**
      * extract
      *
-     * @param array Parameters
+     * @param array $params
      * @return DoctrineCollection
      */
     public function extract($params)

@@ -63,7 +63,7 @@ class CategoryRepository extends EntityRepository
     /**
      * extractQueryBuilder
      *
-     * @param array Parameters
+     * @param array $params
      * @return QueryBuilder
      */
     public function extractQueryBuilder($params)
@@ -138,7 +138,7 @@ class CategoryRepository extends EntityRepository
     /**
      * extractQuery
      *
-     * @param array Parameters
+     * @param array $params
      * @return Query
      */
     public function extractQuery($params)
@@ -151,7 +151,7 @@ class CategoryRepository extends EntityRepository
     /**
      * extract
      *
-     * @param array Parameters
+     * @param array $params
      * @return DoctrineCollection
      */
     public function extract($params)
