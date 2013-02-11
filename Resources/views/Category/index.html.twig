@@ -24,11 +24,9 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
             <th>Color</th>
-            <th>Level</th>
-            <th>Tree</th>
+            <th>Name</th>
+            <th>Slug</th>
             <th colspan="3">{% trans %}Actions{% endtrans %}</th>
         </tr>
     </thead>
@@ -36,11 +34,12 @@
     {% for entity in pager.currentPageResults %}
         <tr>
             <td><a href="{{ path('admin_partner_category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.description }}</td>
-            <td>{{ entity.color }}</td>
-            <td>{{ entity.level }}</td>
-            <td>{{ entity.tree }}</td>
+            <td>
+                <div style="width:28px;height:28px;border:1px solid #222;background:{{ entity.color }}" title="{{ entity.color }}">
+                </div>
+            </td>
+            <td>{{ entity }}</td>
+            <td>{{ entity.slug }}</td>
         <td>
                     <a class="btn btn-block" href="{{ path('admin_partner_category_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
                 </td>

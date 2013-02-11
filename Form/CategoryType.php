@@ -1,5 +1,13 @@
 <?php
 
+/**
+ *
+ * @author:  Baptiste BOUCHEREAU <baptiste.bouchereau@idci-consulting.fr>
+ * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @licence: GPL
+ *
+ */
+
 namespace IDCI\Bundle\PartnerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -14,10 +22,7 @@ class CategoryType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('color')
-            ->add('level')
-            ->add('tree')
             ->add('parent')
-            ->add('partners', null, array("required" => false))
         ;
     }
 

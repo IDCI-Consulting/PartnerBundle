@@ -54,17 +54,17 @@ class Partner
      * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", mappedBy="partner")
      */
     protected $offers;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", mappedBy="partner", cascade={"persist"})
      */
     protected $locations;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner")
      */
     protected $socialLinks;
-    
+
     /**
      * categories
      *
@@ -75,7 +75,7 @@ class Partner
      * )
      */
      protected $categories;
-    
+
     /**
      * toString
      *
@@ -85,7 +85,7 @@ class Partner
     {
         return sprintf("%s : %s", $this->getId(), $this->getName());
     }
-    
+
     /**
      * Constructor
      */
@@ -96,7 +96,7 @@ class Partner
         $this->socialLinks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
