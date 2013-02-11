@@ -23,9 +23,19 @@ class PartnerType extends AbstractType
             ->add('mail')
             ->add('phone')
             ->add('categories', null, array("required" => false))
+            ->add('offers', 'collection', array(
+                'type'         => new OfferType(),
+                'allow_add'    => true,
+                'by_reference' => false
+            ))
+            ->add('socialLinks', 'collection', array(
+                'type'         => new SocialLinkType(),
+                'allow_add'    => true,
+                'by_reference' => false
+            ))
             ->add('locations', 'collection', array(
-                'type' => new LocationType(),
-                'allow_add' => true,
+                'type'         => new LocationType(),
+                'allow_add'    => true,
                 'by_reference' => false
             ))
         ;
@@ -34,7 +44,7 @@ class PartnerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'IDCI\Bundle\PartnerBundle\Entity\Partner',
+            'data_class'         => 'IDCI\Bundle\PartnerBundle\Entity\Partner',
             'cascade_validation' => true
         ));
     }

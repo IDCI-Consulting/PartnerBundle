@@ -20,7 +20,6 @@ class SocialLinkType extends AbstractType
     {
         $builder
             ->add('uri')
-            ->add('partner')
         ;
     }
 

@@ -16,6 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use IDCI\Bundle\PartnerBundle\Entity\Partner;
+use IDCI\Bundle\PartnerBundle\Entity\Offer;
+use IDCI\Bundle\PartnerBundle\Entity\SocialLink;
 use IDCI\Bundle\PartnerBundle\Entity\Location;
 use IDCI\Bundle\PartnerBundle\Form\PartnerType;
 
@@ -89,11 +91,9 @@ class PartnerController extends Controller
     public function newAction()
     {
         $entity  = new Partner();
-        $location = new Location();
-        $entity->addLocation($location);
-        /*$location2 = new Location();
-        $location2->setPartner($entity);
-        $entity->addLocation($location2);*/
+        $entity->addOffer(new Offer());
+        $entity->addSocialLink(new SocialLink());
+        $entity->addLocation(new Location());
         $form = $this->createForm(new PartnerType(), $entity);
 
         return array(
