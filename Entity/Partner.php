@@ -56,7 +56,7 @@ class Partner
     protected $offers;
     
     /**
-     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", mappedBy="partner")
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Location", mappedBy="partner", cascade={"persist"})
      */
     protected $locations;
     
@@ -215,9 +215,9 @@ class Partner
      * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
      * @return Partner
      */
-    public function addLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $locations)
+    public function addLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location)
     {
-        $this->locations[] = $locations;
+        $this->locations[] = $location;
     
         return $this;
     }
@@ -227,9 +227,9 @@ class Partner
      *
      * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
      */
-    public function removeLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $locations)
+    public function removeLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location)
     {
-        $this->locations->removeElement($locations);
+        $this->locations->removeElement($location);
     }
 
     /**
