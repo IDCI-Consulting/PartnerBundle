@@ -143,7 +143,7 @@ class CategoryRepository extends EntityRepository
      */
     public function extractQuery($params)
     {
-        $qb = $this->queryQueryBuilder($params);
+        $qb = $this->extractQueryBuilder($params);
 
         return is_null($qb) ? $qb : $qb->getQuery();
     }
