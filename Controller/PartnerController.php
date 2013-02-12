@@ -178,11 +178,71 @@ class PartnerController extends Controller
             throw $this->createNotFoundException('Unable to find Partner entity.');
         }
 
+        $originalFields = array();
+
+        // Create an array of the current Offer objects in the database
+        foreach ($entity->getOffers() as $offer) {
+            $originalFields["offers"][] = $offer;
+        }
+
+        // Create an array of the current SocialLink objects in the database
+        foreach ($entity->getSocialLinks() as $socialLink) {
+            $originalFields["socialLinks"][] = $socialLink;
+        }
+
+        // Create an array of the current Location objects in the database
+        foreach ($entity->getLocations() as $location) {
+            $originalFields["locations"][] = $location;
+        }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new PartnerType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            // filter $originalFields to contain offers no longer present
+            foreach ($entity->getOffers() as $offer) {
+                foreach ($originalFields["offers"] as $key => $toDel) {
+                    if ($toDel->getId() === $offer->getId()) {
+                        unset($originalFields["offers"][$key]);
+                    }
+                }
+            }
+            // filter $originalFields to contain SocialLinks no longer present
+            foreach ($entity->getSocialLinks() as $socialLink) {
+                foreach ($originalFields["socialLinks"] as $key => $toDel) {
+                    if ($toDel->getId() === $socialLink->getId()) {
+                        unset($originalFields["socialLinks"][$key]);
+                    }
+                }
+            }
+            // filter $originalFields to contain locations no longer present
+            foreach ($entity->getLocations() as $location) {
+                foreach ($originalFields["locations"] as $key => $toDel) {
+                    if ($toDel->getId() === $location->getId()) {
+                        unset($originalFields["locations"][$key]);
+                    }
+                }
+            }
+
+            // remove the relationship between the offer and the Partner
+            foreach ($originalFields["offers"] as $offer) {
+                // remove the offer
+                $em->remove($offer);
+            }
+
+            // remove the relationship between the offer and the Partner
+            foreach ($originalFields["socialLinks"] as $socialLink) {
+                // remove the offer
+                $em->remove($socialLink);
+            }
+
+            // remove the relationship between the offer and the Partner
+            foreach ($originalFields["locations"] as $location) {
+                // remove the offer
+                $em->remove($location);
+            }
+
             $em->persist($entity);
             $em->flush();
 

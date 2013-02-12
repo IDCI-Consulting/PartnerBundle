@@ -40,23 +40,26 @@
 
 <script type="text/javascript">
 
-    function processFormCollection(collectionHolder, $link) {
+    function processFormCollection(collectionHolder, $addlink) {
+        collectionHolder.find('li').each(function() {
+            addFormDeleteLink($(this));
+        });
         // add the "add a tag" anchor and li to the tags ul
-        collectionHolder.append($link);
+        collectionHolder.append($addlink);
 
         // count the current form inputs we have (e.g. 2), use that as the new
         // index when inserting a new item (e.g. 2)
         collectionHolder.data('index', collectionHolder.find(':input').length);
 
-        $link.on('click', function(e) {
+        $addlink.on('click', function(e) {
             // prevent the link from creating a "#" on the URL
             e.preventDefault();
             // add a new tag form (see next code block)
-            addTagForm(collectionHolder, $link);
+            addForm(collectionHolder, $addlink);
         });
     }
 
-    function addTagForm(collectionHolder, $link) {
+    function addForm(collectionHolder, $addlink) {
         // Get the data-prototype explained earlier
         var prototype = collectionHolder.data('prototype');
 
@@ -72,10 +75,26 @@
 
         // Display the form in the page in an li, before the "Add a tag" link li
         var $newFormLi = $('<li></li>').append(newForm);
-        $link.before($newFormLi);
+        $addlink.before($newFormLi);
+
+        addFormDeleteLink($newFormLi);
+    }
+
+    function addFormDeleteLink($formLi) {
+        console.log($formLi);
+        var $removeFormA = $('<a href="#">delete this form</a>');
+        $formLi.append($removeFormA);
+        $removeFormA.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the tag form
+            $formLi.remove();
+        });
     }
 
     jQuery(document).ready(function() {
+
         // Get the ul that holds the collection of offers
         var offersCollectionHolder = $('ul.offers');
         // Get the ul that holds the collection of social_links
@@ -90,9 +109,17 @@
         // setup an "add a location" link
         var addLocationLink = $('<li><a href="#" class="add_tag_link">Add a location</a></li>');
 
+        // setup a "delete this offer" link
+        var deleteOfferLink = $('<li><a href="#" class="delete_tag_link">Delete this offer</a></li>');
+        // setup a "delete this link" link
+        var deleteSlinkLink = $('<li><a href="#" class="delete_tag_link">Delete this social link</a></li>');
+        // setup a "delete this location" link
+        var deleteLocationLink = $('<li><a href="#" class="delete_tag_link">Delete this location</a></li>');
+
         processFormCollection(offersCollectionHolder, addOfferLink);
         processFormCollection(slinksCollectionHolder, addSlinkLink);
         processFormCollection(locationsCollectionHolder, addLocationLink);
+
     });
 
 </script>
