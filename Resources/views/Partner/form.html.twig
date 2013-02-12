@@ -1,0 +1,98 @@
+{{ form_row(form.name) }}
+{{ form_row(form.mail) }}
+{{ form_row(form.phone) }}
+{{ form_row(form.categories) }}
+
+<h3>Offers</h3>
+<ul class="offers">
+    {% for offer in form.offers %}
+        <li>
+            {{ form_row(offer.name) }}
+            {{ form_row(offer.description) }}
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Social Links</h3>
+<ul class="social_links">
+    {% for slink in form.socialLinks %}
+        <li>
+            {{ form_row(slink.uri) }}
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Locations</h3>
+<ul class="locations">
+    {% for location in form.locations %}
+        <li>
+            {{ form_row(location.name) }}
+            {{ form_row(location.address) }}
+            {{ form_row(location.zip_code) }}
+            {{ form_row(location.country) }}
+            {{ form_row(location.city) }}
+        </li>
+    {% endfor %}
+</ul>
+
+{{ form_rest(form) }}
+
+
+<script type="text/javascript">
+
+    function processFormCollection(collectionHolder, $link) {
+        // add the "add a tag" anchor and li to the tags ul
+        collectionHolder.append($link);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        collectionHolder.data('index', collectionHolder.find(':input').length);
+
+        $link.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // add a new tag form (see next code block)
+            addTagForm(collectionHolder, $link);
+        });
+    }
+
+    function addTagForm(collectionHolder, $link) {
+        // Get the data-prototype explained earlier
+        var prototype = collectionHolder.data('prototype');
+
+        // get the new index
+        var index = collectionHolder.data('index');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = prototype.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<li></li>').append(newForm);
+        $link.before($newFormLi);
+    }
+
+    jQuery(document).ready(function() {
+        // Get the ul that holds the collection of offers
+        var offersCollectionHolder = $('ul.offers');
+        // Get the ul that holds the collection of social_links
+        var slinksCollectionHolder = $('ul.social_links');
+        // Get the ul that holds the collection of locations
+        var locationsCollectionHolder = $('ul.locations');
+
+        // setup an "add an offer" link
+        var addOfferLink = $('<li><a href="#" class="add_tag_link">Add an offer</a></li>');
+        // setup an "add a social link" link
+        var addSlinkLink = $('<li><a href="#" class="add_tag_link">Add a social link</a></li>');
+        // setup an "add a location" link
+        var addLocationLink = $('<li><a href="#" class="add_tag_link">Add a location</a></li>');
+
+        processFormCollection(offersCollectionHolder, addOfferLink);
+        processFormCollection(slinksCollectionHolder, addSlinkLink);
+        processFormCollection(locationsCollectionHolder, addLocationLink);
+    });
+
+</script>

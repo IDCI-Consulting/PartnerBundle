@@ -24,7 +24,6 @@ class LocationType extends AbstractType
             ->add('zip_code')
             ->add('country')
             ->add('city')
-            ->add('partner')
         ;
     }
 

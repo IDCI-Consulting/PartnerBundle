@@ -26,16 +26,19 @@ class PartnerType extends AbstractType
             ->add('offers', 'collection', array(
                 'type'         => new OfferType(),
                 'allow_add'    => true,
+                'allow_delete' => true,
                 'by_reference' => false
             ))
             ->add('socialLinks', 'collection', array(
                 'type'         => new SocialLinkType(),
                 'allow_add'    => true,
+                'allow_delete' => true,
                 'by_reference' => false
             ))
             ->add('locations', 'collection', array(
                 'type'         => new LocationType(),
                 'allow_add'    => true,
+                'allow_delete' => true,
                 'by_reference' => false
             ))
         ;

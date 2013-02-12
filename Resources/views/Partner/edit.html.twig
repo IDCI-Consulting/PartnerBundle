@@ -9,7 +9,8 @@
 </div>
 
 <form action="{{ path('admin_partner_partner_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
+
+    {% include "IDCIPartnerBundle:Partner:form.html.twig" with{"form": edit_form} %}
     <p>
         <button type="submit" class="btn btn-primary">{% trans %}Edit{% endtrans %}</button>
     </p>

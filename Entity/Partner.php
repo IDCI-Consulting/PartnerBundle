@@ -51,7 +51,7 @@ class Partner
     private $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", mappedBy="partner")
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Offer", mappedBy="partner", cascade={"persist"})
      */
     protected $offers;
 
@@ -61,7 +61,7 @@ class Partner
     protected $locations;
 
     /**
-     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner")
+     * @ORM\OneToMany(targetEntity="IDCI\Bundle\PartnerBundle\Entity\SocialLink", mappedBy="partner", cascade={"persist"})
      */
     protected $socialLinks;
 
@@ -179,24 +179,27 @@ class Partner
     /**
      * Add offers
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offers
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offer
      * @return Partner
      */
-    public function addOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offers)
+    public function addOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offer)
     {
-        $this->offers[] = $offers;
-    
+        if(!$offer->getPartner()) {
+            $offer->setPartner($this);
+        }
+        $this->offers[] = $offer;
+
         return $this;
     }
 
     /**
      * Remove offers
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offers
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Offer $offer
      */
-    public function removeOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offers)
+    public function removeOffer(\IDCI\Bundle\PartnerBundle\Entity\Offer $offer)
     {
-        $this->offers->removeElement($offers);
+        $this->offers->removeElement($offer);
     }
 
     /**
@@ -210,22 +213,25 @@ class Partner
     }
 
     /**
-     * Add locations
+     * Add location
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $location
      * @return Partner
      */
     public function addLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location)
     {
+        if(!$location->getPartner()) {
+            $location->setPartner($this);
+        }
         $this->locations[] = $location;
-    
+
         return $this;
     }
 
     /**
-     * Remove locations
+     * Remove location
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $locations
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Location $location
      */
     public function removeLocation(\IDCI\Bundle\PartnerBundle\Entity\Location $location)
     {
@@ -243,26 +249,29 @@ class Partner
     }
 
     /**
-     * Add socialLinks
+     * Add socialLink
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks
+     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLink
      * @return Partner
      */
-    public function addSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks)
+    public function addSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLink)
     {
-        $this->socialLinks[] = $socialLinks;
-    
+        if(!$socialLink->getPartner()) {
+            $socialLink->setPartner($this);
+        }
+        $this->socialLinks[] = $socialLink;
+
         return $this;
     }
 
     /**
-     * Remove socialLinks
+     * Remove socialLink
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks
+     * @param \IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLink
      */
-    public function removeSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLinks)
+    public function removeSocialLink(\IDCI\Bundle\PartnerBundle\Entity\SocialLink $socialLink)
     {
-        $this->socialLinks->removeElement($socialLinks);
+        $this->socialLinks->removeElement($socialLink);
     }
 
     /**
@@ -276,26 +285,26 @@ class Partner
     }
 
     /**
-     * Add categories
+     * Add category
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $categories
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $category
      * @return Partner
      */
-    public function addCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $categories)
+    public function addCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
     
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove category
      *
-     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $categories
+     * @param \IDCI\Bundle\PartnerBundle\Entity\Category $category
      */
-    public function removeCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $categories)
+    public function removeCategorie(\IDCI\Bundle\PartnerBundle\Entity\Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**
