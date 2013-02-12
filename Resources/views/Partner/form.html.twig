@@ -4,7 +4,7 @@
 {{ form_row(form.categories) }}
 
 <h3>Offers</h3>
-<ul class="offers">
+<ul class="offers" data-prototype="{{ form_widget(form.offers.vars.prototype)|e }}">
     {% for offer in form.offers %}
         <li>
             {{ form_row(offer.name) }}
@@ -14,7 +14,7 @@
 </ul>
 
 <h3>Social Links</h3>
-<ul class="social_links">
+<ul class="social_links" data-prototype="{{ form_widget(form.socialLinks.vars.prototype)|e }}">
     {% for slink in form.socialLinks %}
         <li>
             {{ form_row(slink.uri) }}
@@ -23,7 +23,7 @@
 </ul>
 
 <h3>Locations</h3>
-<ul class="locations">
+<ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e }}>
     {% for location in form.locations %}
         <li>
             {{ form_row(location.name) }}
