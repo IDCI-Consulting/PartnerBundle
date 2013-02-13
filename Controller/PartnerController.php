@@ -180,19 +180,17 @@ class PartnerController extends Controller
 
         $originalFields = array();
 
-        // Create an array of the current Offer objects in the database
-        foreach ($entity->getOffers() as $offer) {
-            $originalFields["offers"][] = $offer;
-        }
+        $partnerFields = array(
+            "offers"      => $entity->getOffers(),
+            "socialLinks" => $entity->getSocialLinks(),
+            "locations"   => $entity->getLocations()
+        ); 
 
-        // Create an array of the current SocialLink objects in the database
-        foreach ($entity->getSocialLinks() as $socialLink) {
-            $originalFields["socialLinks"][] = $socialLink;
-        }
-
-        // Create an array of the current Location objects in the database
-        foreach ($entity->getLocations() as $location) {
-            $originalFields["locations"][] = $location;
+        // Create an array of the current Offer/SocialLink/Location objects in the database
+        foreach ($partnerFields as $key => $field) {
+            foreach ($field as $element) {
+              $originalFields[$key][] = $element;
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -200,47 +198,28 @@ class PartnerController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            // filter $originalFields to contain offers no longer present
-            foreach ($entity->getOffers() as $offer) {
-                foreach ($originalFields["offers"] as $key => $toDel) {
-                    if ($toDel->getId() === $offer->getId()) {
-                        unset($originalFields["offers"][$key]);
-                    }
-                }
-            }
-            // filter $originalFields to contain SocialLinks no longer present
-            foreach ($entity->getSocialLinks() as $socialLink) {
-                foreach ($originalFields["socialLinks"] as $key => $toDel) {
-                    if ($toDel->getId() === $socialLink->getId()) {
-                        unset($originalFields["socialLinks"][$key]);
-                    }
-                }
-            }
-            // filter $originalFields to contain locations no longer present
-            foreach ($entity->getLocations() as $location) {
-                foreach ($originalFields["locations"] as $key => $toDel) {
-                    if ($toDel->getId() === $location->getId()) {
-                        unset($originalFields["locations"][$key]);
+
+            // filter $originalFields to contain offers/socialLinks/locations no longer present
+            foreach ($partnerFields as $fieldKey => $field) {
+                foreach ($field as $element) {
+                    if(isset($originalFields[$fieldKey])) {
+                        foreach ($originalFields[$fieldKey] as $key => $toDel) {
+                            if ($toDel->getId() === $element->getId()) {
+                                unset($originalFields[$fieldKey][$key]);
+                            }
+                        }
                     }
                 }
             }
 
-            // remove the relationship between the offer and the Partner
-            foreach ($originalFields["offers"] as $offer) {
-                // remove the offer
-                $em->remove($offer);
-            }
-
-            // remove the relationship between the offer and the Partner
-            foreach ($originalFields["socialLinks"] as $socialLink) {
-                // remove the offer
-                $em->remove($socialLink);
-            }
-
-            // remove the relationship between the offer and the Partner
-            foreach ($originalFields["locations"] as $location) {
-                // remove the offer
-                $em->remove($location);
+            // remove the relationship between the offer/socialLink/location and the Partner
+            foreach ($partnerFields as $key => $field) {
+                if(isset($originalFields[$key])) {
+                    foreach ($originalFields[$key] as $element) {
+                        // remove the offer
+                        $em->remove($element);
+                    }
+                }
             }
 
             $em->persist($entity);
