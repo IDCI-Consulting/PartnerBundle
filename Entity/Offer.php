@@ -50,7 +50,7 @@ class Offer
      * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
      */
     protected $partner;
-    
+
     /**
      * toString
      *
@@ -58,9 +58,9 @@ class Offer
      */
     public function __toString()
     {
-        return sprintf("%s : %s", $this->getId(), $this->getName());
-    }    
-    
+        return sprintf("%s: %s", $this->getId(), $this->getName());
+    }
+
     /**
      * Get id
      *

@@ -71,7 +71,7 @@ class Location
      * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
      */
     protected $partner;
-    
+
     /**
      * toString
      *
@@ -79,9 +79,14 @@ class Location
      */
     public function __toString()
     {
-        return sprintf("%s : %s", $this->getId(), $this->getName());
-    }   
-    
+        return sprintf("%s: %s %s %s",
+            $this->getName(),
+            $this->getCountry(),
+            $this->getCity(),
+            $this->getZipCode()
+        );
+    }
+
     /**
      * Get id
      *

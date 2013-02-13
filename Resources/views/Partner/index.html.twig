@@ -24,9 +24,13 @@
     <thead>
         <tr>
             <th>Id</th>
+            <th>Categories</th>
             <th>Name</th>
             <th>Mail</th>
             <th>Phone</th>
+            <th>Locations</th>
+            <th>Offers</th>
+            <th>Social Links</th>
             <th colspan="3">{% trans %}Actions{% endtrans %}</th>
         </tr>
     </thead>
@@ -34,18 +38,43 @@
     {% for entity in pager.currentPageResults %}
         <tr>
             <td><a href="{{ path('admin_partner_partner_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>
+                {% for category in entity.categories %}
+                    <div style="width:28px;height:28px;border:1px solid #222;background:{{ category.color }}" title="{{ category }}">
+                    </div>
+                {% endfor %}
+            </td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.mail }}</td>
             <td>{{ entity.phone }}</td>
-        <td>
-                    <a class="btn btn-block" href="{{ path('admin_partner_partner_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
-                </td>
-        <td>
-                    <a class="btn btn-block btn-primary" href="{{ path('admin_partner_partner_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
-                </td>
-        <td>
-                    {% render 'IDCIPartnerBundle:Partner:deleteForm' with { 'id': entity.id } %}
-                </td>
+            <td>
+                {% for location in entity.locations %}
+                    {{ location }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for offer in entity.offers %}
+                    {{ offer }}
+                {% endfor %}
+            </td>
+            <td>
+                <ul>
+                {% for socialLink in entity.socialLinks %}
+                    <li>{{ socialLink }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a class="btn btn-block" href="{{ path('admin_partner_partner_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
+            </td>
+            <td>
+                <a class="btn btn-block btn-primary" href="{{ path('admin_partner_partner_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
+            </td>
+            <td>
+                
+            <td>
+                {% render 'IDCIPartnerBundle:Partner:deleteForm' with { 'id': entity.id } %}
+            </td>
         </tr>
     {% endfor %}
     </tbody>
