@@ -47,7 +47,7 @@ class Offer
      * partner
      *
      * @ORM\ManyToOne(targetEntity="IDCI\Bundle\PartnerBundle\Entity\Partner", inversedBy="offers")
-     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="partner_id", referencedColumnName="id", nullable=false, onDelete="Cascade")
      */
     protected $partner;
 
