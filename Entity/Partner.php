@@ -39,14 +39,14 @@ class Partner
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=255)
+     * @ORM\Column(name="mail", type="string", length=255, nullable=true)
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
 
