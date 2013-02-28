@@ -151,6 +151,30 @@ class PartnerRepository extends EntityRepository
             ;
         }
 
+        if(isset($params['location_city'])) {
+            $qb
+                ->leftJoin('pr.locations', 'ls')
+                ->andWhere($qb->expr()->like('ls.city', ':location_city'))
+                ->setParameter('location_city', $params['location_city'])
+            ;
+        }
+
+        if(isset($params['location_country'])) {
+            $qb
+                ->leftJoin('pr.locations', 'ls')
+                ->andWhere($qb->expr()->like('ls.country', ':location_country'))
+                ->setParameter('location_country', $params['location_country'])
+            ;
+        }
+
+        if(isset($params['location_zip_code'])) {
+            $qb
+                ->leftJoin('pr.locations', 'ls')
+                ->andWhere($qb->expr()->like('ls.zip_code', ':location_zip_code'))
+                ->setParameter('location_zip_code', $params['location_zip_code'])
+            ;
+        }
+
         return $qb;
     }
 

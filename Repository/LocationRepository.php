@@ -88,6 +88,27 @@ class LocationRepository extends EntityRepository
             ;
         }
 
+        if(isset($params['city'])) {
+            $qb
+                ->andWhere($qb->expr()->like('loc.city', ':city'))
+                ->setParameter('city', $params['city'])
+            ;
+        }
+
+        if(isset($params['country'])) {
+            $qb
+                ->andWhere($qb->expr()->like('loc.country', ':country'))
+                ->setParameter('country', $params['country'])
+            ;
+        }
+
+        if(isset($params['zip_code'])) {
+            $qb
+                ->andWhere($qb->expr()->like('loc.zip_code', ':zip_code'))
+                ->setParameter('zip_code', $params['zip_code'])
+            ;
+        }
+
         return $qb;
     }
 
