@@ -15,8 +15,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Location
  *
- * @ORM\Table(name="idci_partner_location")
  * @ORM\Entity(repositoryClass="IDCI\Bundle\PartnerBundle\Repository\LocationRepository")
+ * @ORM\Table(name="idci_partner_location", indexes={
+ *    @ORM\Index(name="city_idx", columns={"city"}),
+ *    @ORM\Index(name="zip_code_idx", columns={"zip_code"}),
+ *    @ORM\Index(name="country_idx", columns={"country"})
+ * }))
  */
 class Location
 {
@@ -39,28 +43,28 @@ class Location
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zip_code", type="string", length=255)
+     * @ORM\Column(name="zip_code", type="string", length=255, nullable=true)
      */
     private $zip_code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
