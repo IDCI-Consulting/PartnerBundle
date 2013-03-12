@@ -17,62 +17,76 @@ To install this bundle please follow the next steps:
 
 First add the dependencie to your `composer.json` file:
 
-    "require": {
-        ...
-        "idci/partner-bundle": "dev-master"
-    },
+```json
+"require": {
+    ...
+    "idci/partner-bundle": "dev-master"
+},
+```
 
 And install the bundle with the command:
 
-    php composer.phar update
+```sh
+php composer.phar update
+```
 
 Then, enable the bundle in your application kernel:
 
-    <?php
-    // app/AppKernel.php
+```php
+<?php
+// app/AppKernel.php
 
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new IDCI\Bundle\PartnerBundle\IDCIPartnerBundle(),
-        );
-    }
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new IDCI\Bundle\PartnerBundle\IDCIPartnerBundle(),
+    );
+}
+```
 
 In your routing.yml file, add the following:
 
-    idci_partner:
-        resource: "../../vendor/idci/partner-bundle/IDCI/Bundle/PartnerBundle/Controller"
-        type:     annotation
+```yml
+idci_partner:
+    resource: "../../vendor/idci/partner-bundle/IDCI/Bundle/PartnerBundle/Controller"
+    type:     annotation
+```
 
 If it isn't done yet, configure your database.
 
 Edit your parameters.yml file. Here is an exemple which might help you:
 
-    parameters:
-        database_driver:   pdo_mysql
-        database_host:     localhost
-        database_port:     ~
-        database_name:     sf_partner
-        database_user:     root
-        database_password: MyPassword
+```yml
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     sf_partner
+    database_user:     root
+    database_password: MyPassword
 
-        mailer_transport:  smtp
-        mailer_host:       localhost
-        mailer_user:       ~
-        mailer_password:   ~
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:       ~
+    mailer_password:   ~
 
-        locale:            en
-        secret:            ThisTokenIsNotSoSecretChangeIt
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+```
 
 Run theses commands in your workspace directory:
 
-    php app/console doctrine:database:create
-    php app/console doctrine:schema:create
+```sh
+php app/console doctrine:database:create
+php app/console doctrine:schema:create
+```
 
 Else, just run the following:
 
-    php app/console doctrine:schema:update
+```sh
+php app/console doctrine:schema:update
+```
 
 Now the Bundle is installed and ready to use. You will find new routes by running this command:
 
