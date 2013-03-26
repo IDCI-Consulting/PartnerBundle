@@ -15,11 +15,13 @@ Installation
 
 To install this bundle please follow the next steps:
 
-First add the dependencie to your `composer.json` file:
+First add the dependencies to your `composer.json` file:
 
 ```json
 "require": {
     ...
+    "pagerfanta/pagerfanta": "dev-master",
+    "white-october/pagerfanta-bundle": "dev-master",
     "idci/partner-bundle": "dev-master"
 },
 ```
@@ -30,7 +32,7 @@ And install the bundle with the command:
 php composer.phar update
 ```
 
-Then, enable the bundle in your application kernel:
+Enable the bundle in your application kernel:
 
 ```php
 <?php
@@ -41,6 +43,7 @@ public function registerBundles()
     $bundles = array(
         // ...
         new IDCI\Bundle\PartnerBundle\IDCIPartnerBundle(),
+        new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
     );
 }
 ```
@@ -52,6 +55,19 @@ idci_partner:
     resource: "../../vendor/idci/partner-bundle/IDCI/Bundle/PartnerBundle/Controller"
     type:     annotation
 ```
+
+As you can see, we use [WhiteOctoberPagerFantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle) to paginate list results.
+So you have to define the `max_per_page` parameter in your `app/config/parameters.yml`
+
+```yml
+parameters:
+    ...
+    max_per_page:  25
+```
+Now, you have to install bootstrap: 
+
+ * Download bootstrap at http://twitter.github.com/bootstrap/assets/bootstrap.zip
+ * Then extract it into your /web directory which is at the root of the project.
 
 If it isn't done yet, configure your database.
 
@@ -92,38 +108,19 @@ Now the Bundle is installed and ready to use. You will find new routes by runnin
 
     php app/console router debug
 
-    admin_partner_category            ANY    /admin/partner/category/
-    admin_partner_category_show       ANY    /admin/partner/category/{id}/show
-    admin_partner_category_new        ANY    /admin/partner/category/new
-    admin_partner_category_create     POST   /admin/partner/category/create
-    admin_partner_category_edit       ANY    /admin/partner/category/{id}/edit
-    admin_partner_category_update     POST   /admin/partner/category/{id}/update
-    admin_partner_category_delete     POST   /admin/partner/category/{id}/delete
-    admin_partner_location            ANY    /admin/partner/location/
-    admin_partner_location_show       ANY    /admin/partner/location/{id}/show
-    admin_partner_location_new        ANY    /admin/partner/location/new
-    admin_partner_location_create     POST   /admin/partner/location/create
-    admin_partner_location_edit       ANY    /admin/partner/location/{id}/edit
-    admin_partner_location_update     POST   /admin/partner/location/{id}/update
-    admin_partner_location_delete     POST   /admin/partner/location/{id}/delete
-    admin_partner_offer               ANY    /admin/partner/offer/
-    admin_partner_offer_show          ANY    /admin/partner/offer/{id}/show
-    admin_partner_offer_new           ANY    /admin/partner/offer/new
-    admin_partner_offer_create        POST   /admin/partner/offer/create
-    admin_partner_offer_edit          ANY    /admin/partner/offer/{id}/edit
-    admin_partner_offer_update        POST   /admin/partner/offer/{id}/update
-    admin_partner_offer_delete        POST   /admin/partner/offer/{id}/delete
-    admin_partner_partner             ANY    /admin/partner/partner/
-    admin_partner_partner_show        ANY    /admin/partner/partner/{id}/show
-    admin_partner_partner_new         ANY    /admin/partner/partner/new
-    admin_partner_partner_create      POST   /admin/partner/partner/create
-    admin_partner_partner_edit        ANY    /admin/partner/partner/{id}/edit
-    admin_partner_partner_update      POST   /admin/partner/partner/{id}/update
-    admin_partner_partner_delete      POST   /admin/partner/partner/{id}/delete
-    admin_partner_sociallink          ANY    /admin/partner/sociallink/
-    admin_partner_sociallink_show     ANY    /admin/partner/sociallink/{id}/show
-    admin_partner_sociallink_new      ANY    /admin/partner/sociallink/new
-    admin_partner_sociallink_create   POST   /admin/partner/sociallink/create
-    admin_partner_sociallink_edit     ANY    /admin/partner/sociallink/{id}/edit
-    admin_partner_sociallink_update   POST   /admin/partner/sociallink/{id}/update
-    admin_partner_sociallink_delete   POST   /admin/partner/sociallink/{id}/delete
+    ...
+    admin_partner                 ANY    ANY  /admin/partner/
+    admin_partner_category        ANY    ANY  /admin/partner/category/
+    admin_partner_category_show   ANY    ANY  /admin/partner/category/{id}/show
+    admin_partner_category_new    ANY    ANY  /admin/partner/category/new
+    admin_partner_category_create POST   ANY  /admin/partner/category/create
+    admin_partner_category_edit   ANY    ANY  /admin/partner/category/{id}/edit
+    admin_partner_category_update POST   ANY  /admin/partner/category/{id}/update
+    admin_partner_category_delete POST   ANY  /admin/partner/category/{id}/delete
+    admin_partner_partner         ANY    ANY  /admin/partner/partner/
+    admin_partner_partner_show    ANY    ANY  /admin/partner/partner/{id}/show
+    admin_partner_partner_new     ANY    ANY  /admin/partner/partner/new
+    admin_partner_partner_create  POST   ANY  /admin/partner/partner/create
+    admin_partner_partner_edit    ANY    ANY  /admin/partner/partner/{id}/edit
+    admin_partner_partner_update  POST   ANY  /admin/partner/partner/{id}/update
+    admin_partner_partner_delete  POST   ANY  /admin/partner/partner/{id}/delete
