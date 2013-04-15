@@ -42,8 +42,8 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new IDCI\Bundle\PartnerBundle\IDCIPartnerBundle(),
         new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+        new IDCI\Bundle\PartnerBundle\IDCIPartnerBundle(),
     );
 }
 ```
