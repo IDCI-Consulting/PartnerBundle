@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Category controller.
  *
- * @Route("/admin/partner/category")
+ * @Route("/partner/category")
  */
 class CategoryController extends Controller
 {

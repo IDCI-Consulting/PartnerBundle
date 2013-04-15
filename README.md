@@ -54,6 +54,7 @@ In your routing.yml file, add the following:
 idci_partner:
     resource: "../../vendor/idci/partner-bundle/IDCI/Bundle/PartnerBundle/Controller"
     type:     annotation
+    prefix:   /admin
 ```
 
 As you can see, we use [WhiteOctoberPagerFantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle) to paginate list results.

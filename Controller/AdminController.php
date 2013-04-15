@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Admin controller.
  *
- * @Route("/admin/partner")
+ * @Route("/partner")
  */
 class AdminController extends Controller
 {

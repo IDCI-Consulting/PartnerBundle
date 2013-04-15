@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Partner controller.
  *
- * @Route("/admin/partner/partner")
+ * @Route("/partner/partner")
  */
 class PartnerController extends Controller
 {
